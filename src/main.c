@@ -23,6 +23,9 @@
 #include <alloca.h>
 #define XVERSION 6
 
+#include "dump.h"
+#include "z85.h"
+
 static void shutdown_using_pmic()
 {
     const u8 MAX77620_I2C_PERIPH = I2C_PWR;
@@ -328,6 +331,8 @@ int main(void) {
     if (rcm_usb_device_ready())
     {
         rcm_usb_device_write_ep1_in_sync((u8*)textBuf, currTextBufPos, NULL);
+        // dump("iram", 0x40000000, 256 * 1024);
+        dump("irom", (void *)0x00100000, 2 * 1024);
         rcm_usb_device_reset_ep1();
     }
 
