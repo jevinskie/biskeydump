@@ -332,7 +332,8 @@ int main(void) {
     {
         rcm_usb_device_write_ep1_in_sync((u8*)textBuf, currTextBufPos, NULL);
         // dump("iram", 0x40000000, 256 * 1024);
-        dump("irom", (void *)0x00100000, 2 * 1024);
+        dump("iram", (void *)0x40000000, 256 * 1024);
+        dump("irom", (void *)0x00100000, 96 * 1024);
         rcm_usb_device_reset_ep1();
     }
 
